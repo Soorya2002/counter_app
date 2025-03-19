@@ -7,13 +7,17 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Center(child: Text('Home Page'))),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ElevatedButton(
-            onPressed: () {
-              context.pushNamed('counter');
-            },
-            child: Text('Press to new page'),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                context.pushNamed('counter');
+              },
+              child: Text('Press to new page'),
+            ),
           ),
         ],
       ),
