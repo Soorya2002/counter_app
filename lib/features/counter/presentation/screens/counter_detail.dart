@@ -22,21 +22,35 @@ class _CounterDetailState extends State<CounterDetail> {
           },
           icon: Icon(Icons.keyboard_arrow_left),
         ),
-        title: Center(child: Text(widget.counter.title)),
+        title: Center(child: Text(widget.counter.title ?? "")),
       ),
       body: Center(
         child: Consumer<CounterProvider>(
           builder: (context, counterProvider, child) {
+            // Find the updated counter in provider
+            final updatedCounter = counterProvider.counters.firstWhere(
+              (c) => c.id == widget.counter.id,
+              orElse:
+                  () => Counter(
+                    id: widget.counter.id,
+                    title: "Unknown",
+                    count: 0,
+                  ),
+            );
+
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Counter Value: ${widget.counter.value}',
+                  'Counter Value: ${updatedCounter.count}', // Updated value
                   style: TextStyle(fontSize: 24),
                 ),
+                SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
-                    counterProvider.incrementCounter(widget.counter.id);
+                    counterProvider.incrementCounter(
+                      counterId: widget.counter.id ?? "",
+                    );
                   },
                   child: Text('Increment'),
                 ),

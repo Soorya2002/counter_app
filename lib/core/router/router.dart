@@ -1,6 +1,6 @@
 import 'package:counter_app/features/counter/models/counter_model.dart';
-import 'package:counter_app/features/counter/screens/counter_detail.dart';
-import 'package:counter_app/features/counter/screens/counter_screen.dart';
+import 'package:counter_app/features/counter/presentation/screens/counter_detail.dart';
+import 'package:counter_app/features/counter/presentation/screens/counter_screen.dart';
 import 'package:counter_app/features/home/home_screen.dart';
 import 'package:go_router/go_router.dart';
 
