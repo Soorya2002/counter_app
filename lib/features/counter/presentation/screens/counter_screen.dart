@@ -1,3 +1,4 @@
+import 'package:counter_app/core/utils/storage_services.dart';
 import 'package:counter_app/features/counter/provider/counter_provider.dart';
 import 'package:counter_app/features/counter/presentation/widgets/show_bottomsheet.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,21 @@ class _CounterScreenState extends State<CounterScreen> {
           },
           icon: Icon(Icons.keyboard_arrow_left),
         ),
-        title: Center(child: Text('Counter')),
+        title: Text('Counter'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await StorageServices().logout(); // Clear stored user data
+              // ignore: use_build_context_synchronously
+              context.go(
+                '/login',
+              ); // Navigate to login and clear previous routes
+            },
+
+            icon: Icon(Icons.logout),
+          ),
+        ],
       ),
       body: Consumer<CounterProvider>(
         builder: (context, counterProvider, _) {

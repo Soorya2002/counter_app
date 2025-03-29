@@ -25,4 +25,9 @@ class StorageServices {
     }
     return null;
   }
+
+  // Logout function (Clear user data)
+  Future<void> logout() async {
+    await _storage.delete(key: _userKey);
+  }
 }
